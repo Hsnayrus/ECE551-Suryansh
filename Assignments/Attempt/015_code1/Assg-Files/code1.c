@@ -14,6 +14,6 @@ int main(void) {
     printf("max(0x123456, 123456) is %d\n", max(0x123456, 123456));
     // print the max of 0x451215AF and 0x913591AF and prints it out as a decimal
     // number
-    print("max(0x451215AF, 0x913591AF", max(0x451315AF, 0x913591AF);
+    printf("max(0x451215AF, 0x913591AF) is %d\n", max(0x451315AF, 0x913591AF));
     return 0;
 }
