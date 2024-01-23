@@ -1,3 +1,4 @@
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 // I've provided "min" and "max" functions in
@@ -16,6 +17,26 @@ int max(int a, int b) {
 }
 
 // Declare your rectangle structure here!
+typedef struct _rectangle {
+    int x;
+    int y;
+    int width;
+    int height;
+} rectangle;
+
+rectangle canonicalize(rectangle r) {
+    // This function makes sure that a rectangle does not have negative width or
+    // height
+
+    if (r.width < 0) {
+        r.x += r.width;
+        r.width &= INT_MAX;
+    }
+    if (r.height < 0) {
+        r.y += r.height;
+        r.height &= INT_MAX;
+    }
+}
 
 rectangle intersection(rectangle r1, rectangle r2) {
     // WRITE THIS FUNCTION
