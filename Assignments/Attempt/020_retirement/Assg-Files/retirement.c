@@ -18,8 +18,8 @@ double computeBalance(double initial, double contribution,
 
 double balanceDuringTenure(int startAge, double initial, retire_info info) {
     for (int i = 0; i < info.months; i++) {
-        printf("Age %3d month %2d you have $%.2lf\n", (startAge / 12), (i + 1),
-               initial);
+        printf("Age %3d month %2d you have $%.2lf\n", (startAge / 12),
+               (startAge % 12), initial);
         initial =
             computeBalance(initial, info.contribution, info.rate_of_return);
         startAge++;
@@ -31,6 +31,8 @@ void retirement(int startAge, double initial, retire_info working,
                 retire_info retired) {
     // Compute for the time worked
     initial = balanceDuringTenure(startAge, initial, working);
+    // Update the start age here as well.
+    startAge += working.months;
     // Compute during retirement
     initial = balanceDuringTenure(startAge, initial, retired);
 }
