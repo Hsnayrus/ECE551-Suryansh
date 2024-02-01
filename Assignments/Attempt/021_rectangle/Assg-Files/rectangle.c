@@ -39,8 +39,31 @@ rectangle canonicalize(rectangle r) {
     return r;
 }
 
+int areIntersecting(rectangle r1, rectangle r2) {
+    int ans = 0;
+    int lower_limit_x = r2.x;
+    int upper_limit_x = r2.x + r2.width;
+    int lower_limit_y = r2.y;
+    int upper_limit_y = r2.y + r2.height;
+    if (((lower_limit_x <= r1.x) || (r1.x <= upper_limit_x)) &&
+        ((lower_limit_y <= r1.y) || (r1.y <= upper_limit_y))) {
+        ans = 1;
+    }
+    return ans;
+}
+
 rectangle intersection(rectangle r1, rectangle r2) {
-    // WRITE THIS FUNCTION
+    // WRITE THIS FUNCTION;
+    rectangle tempR1 = {
+        .x = r1.x, .y = r1.y, .width = r1.width, .height = r1.height};
+    int interesecting = areIntersecting(tempR1, r2);
+    // Proceed further since the rectangles are intersecting
+    if (ans == 1) {
+        r1.x = max(tempR1.x, r2.x);
+        r1.y = max(tempR1.y, r2.y);
+        r1.width = min(tempR1.x + tempR1.width, r2.x + r2.width) - r1.x;
+        r1.height = min(r2.y + r2.height, tempR1.y + tempR1.height) - r1.y;
+    }
     return r1;
 }
 
