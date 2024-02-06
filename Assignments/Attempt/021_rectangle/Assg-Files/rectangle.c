@@ -1,4 +1,3 @@
-#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 // I've provided "min" and "max" functions in
@@ -17,55 +16,19 @@ int max(int a, int b) {
 }
 
 // Declare your rectangle structure here!
-typedef struct _rectangle {
+struct _rectangle {
     int x;
     int y;
     int width;
     int height;
-} rectangle;
+};
+typedef struct _rectangle rectangle;
 
 rectangle canonicalize(rectangle r) {
-    // This function makes sure that a rectangle does not have negative width or
-    // height
-
-    if (r.width < 0) {
-        r.x += r.width;
-        r.width *= -1;
-    }
-    if (r.height < 0) {
-        r.y += r.height;
-        r.height *= -1;
-    }
-    return r;
+    // WRITE THIS FUNCTION
 }
 
-int areIntersecting(rectangle r1, rectangle r2) {
-    int ans = 0;
-    int lower_limit_x = r2.x;
-    int upper_limit_x = r2.x + r2.width;
-    int lower_limit_y = r2.y;
-    int upper_limit_y = r2.y + r2.height;
-    if (((lower_limit_x <= r1.x) || (r1.x <= upper_limit_x)) &&
-        ((lower_limit_y <= r1.y) || (r1.y <= upper_limit_y))) {
-        ans = 1;
-    }
-    return ans;
-}
-
-rectangle intersection(rectangle r1, rectangle r2) {
-    // WRITE THIS FUNCTION;
-    rectangle tempR1 = {
-        .x = r1.x, .y = r1.y, .width = r1.width, .height = r1.height};
-    int interesecting = areIntersecting(tempR1, r2);
-    // Proceed further since the rectangles are intersecting
-    if (ans == 1) {
-        r1.x = max(tempR1.x, r2.x);
-        r1.y = max(tempR1.y, r2.y);
-        r1.width = min(tempR1.x + tempR1.width, r2.x + r2.width) - r1.x;
-        r1.height = min(r2.y + r2.height, tempR1.y + tempR1.height) - r1.y;
-    }
-    return r1;
-}
+rectangle intersection(rectangle r1, rectangle r2) {}
 
 // You should not need to modify any code below this line
 void printRectangle(rectangle r) {
