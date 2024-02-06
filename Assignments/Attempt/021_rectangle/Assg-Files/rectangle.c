@@ -38,23 +38,22 @@ rectangle canonicalize(rectangle r) {
 }
 
 int areIntersecting(rectangle r1, rectangle r2) {
-    // Assumes that the rectangles are canonicalized
-    int ans = 0;
-    int x = r1.x;
-    int ux = r1.x + r1.width;
-    int y = r1.y;
-    int uy = r1.y + r1.height;
-    // llx : lower limit x
-    int llx = r2.x;
-    int ulx = r2.x + r2.width;
-    int lly = r2.y;
-    int uly = r2.y + r2.height;
-    int x_in_range = (llx <= x && x <= ulx) || (llx <= ux && ux <= ulx);
-    int y_in_range = (lly <= y && y <= uly) || (lly <= uy && uy <= uly);
-    if (x_in_range && y_in_range) {
-        ans = 1;
+    r1 = canonicalize(r1);
+    r2 = canonicalize(r2);
+    if (r1.width > r2.width || r1.height > r2.height) {
+        return areIntersecting(r2, r1);
+    } else {
+        int x = r1.x;
+        int ux = r1.x + r1.width;
+        int y = r1.y;
+        int uy = r1.y + r1.height;
+        int llx = r2.x;
+        int ulx = r2.x + r2.width;
+        int lly = r2.y;
+        int uly = r2.y + r2.height;
+        return (((llx <= x && x <= ulx) || (llx <= ux && ux <= ulx)) &&
+                ((lly <= y && y <= uly) || (lly <= uy && uy <= uly)));
     }
-    return ans;
 }
 
 rectangle intersection(rectangle r1, rectangle r2) {
@@ -63,13 +62,13 @@ rectangle intersection(rectangle r1, rectangle r2) {
     rectangle r3 = {.x = 0, .y = 0, .width = 0, .height = 0};
     if (areIntersecting(r1, r2)) {
         r3.x = max(r1.x, r2.x);
-        r3.y = max(r2.y, r1.y);
+        r3.y = max(r1.y, r2.y);
         r3.width = min(r1.x + r1.width, r2.x + r2.width) - r3.x;
         r3.height = min(r1.y + r1.height, r2.y + r2.height) - r3.y;
+        r3 = canonicalize(r3);
     }
     return r3;
 }
-
 // You should not need to modify any code below this line
 void printRectangle(rectangle r) {
     r = canonicalize(r);
