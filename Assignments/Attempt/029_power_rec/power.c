@@ -8,9 +8,9 @@ unsigned power(unsigned x, unsigned y) {
     return power(x, y - 1) * x;
 }
 
-int main(void) {
-    unsigned int x = 9;
-    unsigned int y = 0;
-    printf("(%u ^ %u): %u\n", x, y, power(x, y));
-    return EXIT_SUCCESS;
-}
+/* int main(void) { */
+/*     Unsigned int x = 9; */
+/*     Unsigned int y = 0; */
+/*     printf("(%u ^ %u): %u\n", x, y, power(x, y)); */
+/*     return EXIT_SUCCESS; */
+/* } */
