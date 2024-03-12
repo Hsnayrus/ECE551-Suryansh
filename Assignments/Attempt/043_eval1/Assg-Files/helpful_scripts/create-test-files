@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+function printUsage (){
+    echo "Correct usage: ";
+    echo "$0 sourceFilePath destinationFolder";
+}
+
+# Check number of arguments
+if [ "$#" -ne 2 ]; then
+    printUsage;
+    exit;
+fi
+
+# Now that we know we have the proper number of arguments,
+# we can go ahead and start with the main purpose of the script
+sourceFile=$1;
+destinationFolder=$2;
+
+# sourceFile="${sourceFile}" | sed -E s'#/?(~|\.+|\w+)?/##g'
+# echo "${sourceFile}"
+for i in {1..10}; do
+    currentDestination="${destinationFolder}/test${i}.csv"
+    cp "${sourceFile}" "${currentDestination}"
+done
